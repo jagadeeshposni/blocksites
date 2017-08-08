@@ -1,0 +1,18 @@
+{
+
+  "name": "Block sites",
+  "version": "2.1",
+  "manifest_version":2,
+  "description": "Auto closes the specified sites",
+  "content_scripts": [
+    {
+      "matches": ["http://*/*", "https://*/*"],
+      "js": ["content_script.js"]
+    }
+  ],
+    "permissions": ["history","tabs", "storage"],
+ 	 "browser_action": {
+    "default_title": "Block unwanted sites!",
+    "default_popup": "popup.html"
+  }
+}
