@@ -14,7 +14,7 @@ chrome.runtime.onMessage.addListener(
 							//alert(tabURL);
 							if (tabURL.includes(siteNameOpened)) {
 								chrome.tabs.remove(tabs[i].id);
-								alert("that site was blocked by yourself");
+								alert("That site was blocked by yourself!");
 							}
 						}
 					});
