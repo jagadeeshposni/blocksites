@@ -1,32 +1,6 @@
-// window.onload = function(){
-// 	//alert("hi");
-// 	//document.getElementById('sp1').onclick = dosomething;
-// 	document.getElementById('field').onkeyup = updateText;
-
-// }
 
 document.addEventListener('DOMContentLoaded', function(){
-
-
-		chrome.runtime.onMessage.addListener(
-		  function(request, sender, sendResponse) {
-					chrome.tabs.query({}, function(tabs){
-						//alert("hi");
-						for (var i = 0; i < tabs.length; i++) {
-							var tabURL = tabs[i].url;
-							//alert(tabURL);
-							if(tabURL.includes("facebook.com")){
-								//chrome.tabs.remove(tabs[i].id);
-								alert("You have opened facebook..")
-							}
-						}
-					});
-		    console.log(sender.tab ?
-		                "from a content script:" + sender.tab.url :
-		                "from the extension");
-		    if (request.greeting == "hello")
-		      sendResponse({farewell: "goodbye"});
-		  });
+		
 
 		chrome.storage.sync.get('siteKeyIds', function (result) {
             console.log(result.siteKeyIds);
@@ -39,16 +13,7 @@ document.addEventListener('DOMContentLoaded', function(){
 		document.getElementById('textfield').onkeyup = storeNewSiteAndUpdatePOPUPHTML;
 		document.getElementById('siteList').onclick = updateSiteStorage;
 		//document.getElementsByName('siteName');
-		chrome.tabs.query({}, function(tabs){
-			//alert("hi");
-			for (var i = 0; i < tabs.length; i++) {
-				var tabURL = tabs[i].url;
-				//alert(tabURL);
-				if(tabURL.includes("facebook.com")){
-					chrome.tabs.remove(tabs[i].id);
-				}
-			}
-		});
+		
 
 });
 
@@ -69,7 +34,7 @@ function removeSiteNameFromStorage(siteName){
 	chrome.storage.sync.get({siteKeyIds: []}, function(result){
 	 	var siteKeyIdsArray = (result.siteKeyIds);
 		for(var i = 0; i < siteKeyIdsArray.length; i++){
-			if(siteKeyIdsArray[i].siteName == "fb"){
+			if(siteKeyIdsArray[i].siteName == siteName){
 				siteKeyIdsArray.splice(i,1);
 				i = -1;
 	        }
