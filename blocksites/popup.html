@@ -3,13 +3,42 @@
 <head>
 	<title>POPUP HTML</title>
 	<script src="echo.js"></script>
+<style>
 
+input[type=text] {padding:5px; border:2px solid #ccc; 
+-webkit-border-radius: 5px;
+    border-radius: 5px;
+}
+input[type=text]:focus {border-color:#3333; }
+
+input[type=submit] {padding:5px 15px; background:#ccc; border:0 none;
+    cursor:pointer;
+    -webkit-border-radius: 5px;
+    border-radius: 5px; }
+
+body {
+    background-color: lightblue;	
+    min-width:200px;
+
+}
+
+h3 {
+    color: ;
+    text-align: center;
+}
+
+p {
+    font-family: Tahoma;
+    font-size: 12px;
+}
+</style>
 </head>
 <body>
 <H3>Block my site!</H3>
 
-Sites to block: <input type="text" id="textfield"/>.com
-<br/>
+<p>Sites to block: </p>
+<input placeholder="Type and press enter.." type="text" id="textfield"/>.com
+
 <span id="sp1"></span>
 <div id="some_div">
 <ul style="list-style: none;" id="siteList">

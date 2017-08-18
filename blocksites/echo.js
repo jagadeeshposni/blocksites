@@ -1,7 +1,5 @@
 
 document.addEventListener('DOMContentLoaded', function(){
-		
-
 		chrome.storage.sync.get('siteKeyIds', function (result) {
             console.log(result.siteKeyIds);
             for (var i = 0; i < result.siteKeyIds.length; i++) {
@@ -79,7 +77,7 @@ function isDuplicateSiteName(siteKeyIds, text){
 }
 
 function addCheckboxToView(text){
-	var description = document.createTextNode(text);
+	var description = document.createTextNode(text + ".com");
 	var checkbox = document.createElement('input');
 	var li = document.createElement('li');
 	li.name = text + "li";
