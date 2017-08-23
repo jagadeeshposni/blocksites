@@ -18,6 +18,8 @@ function blockCurrentTab(){
 	chrome.tabs.query({currentWindow: true, active: true}, function(tabs){
 		currentTabURL = tabs[0].url;
 	});
+	
+	
 }
 
 function updateSiteStorage(){
@@ -75,7 +77,7 @@ function isDuplicateSiteName(siteKeyIds, text){
 }
 
 function addCheckboxToView(text){
-	var description = document.createTextNode(text + ".com");
+	var description = document.createTextNode(text);
 	var checkbox = document.createElement('input');
 	var li = document.createElement('li');
 	li.name = text + "li";
