@@ -10,19 +10,23 @@ document.addEventListener('DOMContentLoaded', function(){
 
 		document.getElementById('textfield').onkeyup = storeNewSiteAndUpdatePOPUPHTML;
 		document.getElementById('siteList').onclick = updateSiteStorage;
-		//document.getElementsByName('siteName');
-		
-
+		document.getElementById('blockButton').onclick = blockCurrentTab;
 });
 
+function blockCurrentTab(){
+	var currentTabURL;
+	chrome.tabs.query({currentWindow: true, active: true}, function(tabs){
+		currentTabURL = tabs[0].url;
+	});
+	
+	
+}
+
 function updateSiteStorage(){
-	//alert("clicked babay!");
 	var checkboxes = document.getElementsByName('siteName');
-	//alert(checkboxes.length);
 	for (var i = 0; i < checkboxes.length; i++) {
 		if(!checkboxes[i].checked){
 			removeSiteNameFromStorage(checkboxes[i].id);
-			//removeCheckboxFromPOPUPHTML();
 			checkboxes[i].parentNode.innerHTML = '';
 		}
 	}
@@ -42,13 +46,9 @@ function removeSiteNameFromStorage(siteName){
 }
 
 function storeNewSiteAndUpdatePOPUPHTML(e){
-		if (e.keyCode === 13) {
-			
+		if (e.keyCode === 13) {			
 			var text = document.getElementById('textfield').value;
 			document.getElementById('textfield').value='';
-
-			//var siteListArray = //document.getElementById("some_div").getElementsByTagName("input");
-			console.log(text);
 			chrome.storage.sync.get({siteKeyIds: []}, function (result){
 				var siteKeyIds = result.siteKeyIds;
 				if(!isDuplicateSiteName(siteKeyIds, text)){
@@ -77,7 +77,7 @@ function isDuplicateSiteName(siteKeyIds, text){
 }
 
 function addCheckboxToView(text){
-	var description = document.createTextNode(text + ".com");
+	var description = document.createTextNode(text);
 	var checkbox = document.createElement('input');
 	var li = document.createElement('li');
 	li.name = text + "li";
